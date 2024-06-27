@@ -9,7 +9,7 @@
 	<PackageId>Looplex.OpenForExtension.Loader</PackageId>
 	<Authors>Guilherme Câmara</Authors>
 	<Company>Looplex</Company>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<PackageTags>Looplex;OpenForExtension;Plugin;PluginLoader;</PackageTags>
 	<Description>
 		Contains a helper for loading classes that implements IPlugin from assemblies.
