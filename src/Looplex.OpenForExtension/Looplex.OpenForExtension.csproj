@@ -7,7 +7,6 @@
 	<PackageId>Looplex.OpenForExtension</PackageId>
 	<Authors>Guilherme Câmara</Authors>
 	<Company>Looplex</Company>
-	<Version>1.0.3</Version>
 	<PackageTags>Looplex;OpenForExtension;Plugin;PluginFactory;</PackageTags>
 	<Description>
 		Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
