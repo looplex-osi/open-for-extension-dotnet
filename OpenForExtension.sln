@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F6F8E53B-E11D-4687-AC16-569263ECE9AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1F361E57-C4D2-444A-B87A-5FA27423AA39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.OpenForExtension", "src\Looplex.OpenForExtension\Looplex.OpenForExtension.csproj", "{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.OpenForExtensionTests", "test\Looplex.OpenForExtensionTests\Looplex.OpenForExtensionTests.csproj", "{A8793112-7D1C-4928-8273-577C7D94267D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1B623AB2-68B0-48E5-8C0A-68727004AD99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginSample", "samples\PluginSample\PluginSample.csproj", "{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginAppSample", "samples\PluginAppSample\PluginAppSample.csproj", "{85720B26-501C-4490-B972-36E9635F9BA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginSampleTests", "test\PluginSampleTests\PluginSampleTests.csproj", "{5DE05A0A-6645-472C-974F-7E6311089169}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4EA39E7-2674-40C2-9C6F-23BB933F06C6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.OpenForExtension.Loader", "src\Looplex.OpenForExtension.Loader\Looplex.OpenForExtension.Loader.csproj", "{CDB93A7F-DA0D-4171-B400-431C94F6E6DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.OpenForExtension.LoaderTests", "test\Looplex.OpenForExtension.LoaderTests\Looplex.OpenForExtension.LoaderTests.csproj", "{630109AB-1D73-42DC-85C5-AFD90A8E314A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8793112-7D1C-4928-8273-577C7D94267D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8793112-7D1C-4928-8273-577C7D94267D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8793112-7D1C-4928-8273-577C7D94267D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8793112-7D1C-4928-8273-577C7D94267D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85720B26-501C-4490-B972-36E9635F9BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85720B26-501C-4490-B972-36E9635F9BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85720B26-501C-4490-B972-36E9635F9BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85720B26-501C-4490-B972-36E9635F9BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE05A0A-6645-472C-974F-7E6311089169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE05A0A-6645-472C-974F-7E6311089169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE05A0A-6645-472C-974F-7E6311089169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE05A0A-6645-472C-974F-7E6311089169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB93A7F-DA0D-4171-B400-431C94F6E6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB93A7F-DA0D-4171-B400-431C94F6E6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB93A7F-DA0D-4171-B400-431C94F6E6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB93A7F-DA0D-4171-B400-431C94F6E6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{630109AB-1D73-42DC-85C5-AFD90A8E314A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{630109AB-1D73-42DC-85C5-AFD90A8E314A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{630109AB-1D73-42DC-85C5-AFD90A8E314A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{630109AB-1D73-42DC-85C5-AFD90A8E314A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE7D89D0-4A98-47B0-938D-F7F2D6F40E3E} = {F6F8E53B-E11D-4687-AC16-569263ECE9AC}
+		{A8793112-7D1C-4928-8273-577C7D94267D} = {1F361E57-C4D2-444A-B87A-5FA27423AA39}
+		{F25A5A5B-2A67-4D0C-8E6C-D3D1249405CF} = {1B623AB2-68B0-48E5-8C0A-68727004AD99}
+		{85720B26-501C-4490-B972-36E9635F9BA3} = {1B623AB2-68B0-48E5-8C0A-68727004AD99}
+		{5DE05A0A-6645-472C-974F-7E6311089169} = {1F361E57-C4D2-444A-B87A-5FA27423AA39}
+		{CDB93A7F-DA0D-4171-B400-431C94F6E6DA} = {F6F8E53B-E11D-4687-AC16-569263ECE9AC}
+		{630109AB-1D73-42DC-85C5-AFD90A8E314A} = {1F361E57-C4D2-444A-B87A-5FA27423AA39}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4ADB95D4-95E3-4ECC-A9B0-96C8746F5B00}
+	EndGlobalSection
+EndGlobal
