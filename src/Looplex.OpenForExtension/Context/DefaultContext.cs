@@ -7,7 +7,7 @@ namespace Looplex.OpenForExtension.Context
 {
     public class DefaultContext : IDefaultContext
     {
-        public bool SkipDefaultAction { get; set; } = true;
+        public bool SkipDefaultAction { get; set; } = false;
         public dynamic State { get; } = new ExpandoObject();
         public IList<IPlugin> Plugins { get; private set; }
         public IServiceProvider Services { get; private set; }
