@@ -6,6 +6,6 @@ namespace Looplex.OpenForExtension.Commands
     {
         string Name { get; }
         string Description { get; }
-        void Execute(IPluginContext commandContext);
+        void Execute(IDefaultContext context);
     }
 }

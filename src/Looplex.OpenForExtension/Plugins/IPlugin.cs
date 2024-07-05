@@ -11,7 +11,7 @@ namespace Looplex.OpenForExtension.Plugins
         string Description { get; }
         IEnumerable<ICommand> Commands { get; }
 
-        Task TryExecuteAsync<T>(IPluginContext commandContext) where T : ICommand;
-        void TryExecute<T>(IPluginContext commandContext) where T : ICommand;
+        Task TryExecuteAsync<T>(IDefaultContext context) where T : ICommand;
+        void TryExecute<T>(IDefaultContext context) where T : ICommand;
     }
 }

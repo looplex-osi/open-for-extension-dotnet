@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "TheTortoiseAndTheHareAppSample (no plugin)": {
+      "commandName": "Project"
+    },
+    "TheTortoiseAndTheHareAppSample (with plugin)": {
+      "commandName": "Project",
+      "commandLineArgs": "BoyInTheAudiencePlugin MutantNinjaTurtlePlugin"
+    }
+  }
+}

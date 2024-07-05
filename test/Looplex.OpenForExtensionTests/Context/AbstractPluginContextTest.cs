@@ -1,120 +1,117 @@
 using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
-using Looplex.OpenForExtension.Plugins;
 using Looplex.OpenForExtension.ExtensionMethods;
-using Moq;
+using Looplex.OpenForExtension.Plugins;
 using Looplex.OpenForExtensionTests.Commands;
+using NSubstitute;
 
 namespace Looplex.OpenForExtensionTests.Context
 {
     [TestClass]
-    public class AbstractPluginContextTest : OpenForExtensionTestsBase
+    public class AbstractPluginContextTest
     {
 
         [TestMethod]
         public void Execute_PluginHaveCommandType_CommandIsExecuted()
         {
             // Prepare 
-            var existingCommandMock1 = MockCommand<ITestCommand1>();
+            var existingCommandMock1 = Substitute.For<ITestCommand1>();
             var plugins = new List<IPlugin>
             {
-                MockPluginWithCommands(new ICommand[]
-                {
-                    existingCommandMock1.Object,
-                }),
+                MockPluginWithCommands(
+                [
+                    existingCommandMock1,
+                ]),
             };
-            var contextMock = new Mock<IPluginContext>(MockBehavior.Strict);
-            contextMock.Setup(c => c.Plugins).Returns(plugins);
-            var context = contextMock.Object;
+            var context = Substitute.For<IDefaultContext>();
+            context.Plugins.Returns(plugins);
 
             // Act
             context.Plugins.Execute<ITestCommand1>(context);
 
             // Assert
-            existingCommandMock1.Verify(c => c.Execute(It.Is<IPluginContext>(c => c == context)), Times.Once);
+            existingCommandMock1.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
         }
 
         [TestMethod]
         public async Task ExecuteAsync_PluginsHaveCommandType_CommandsAreExecuted()
         {
             // Prepare 
-            var existingCommandMock1 = MockCommand<ITestCommand1>();
-            var existingCommandMock2 = MockCommand<ITestCommand2>();
-            var existingCommandMock3 = MockCommand<ITestCommand1>();
-            var existingCommandMock4 = MockCommand<ITestCommand4>();
-            var existingCommandMock5 = MockCommand<ITestCommand5>();
+            var existingCommandMock1 = Substitute.For<ITestCommand1>();
+            var existingCommandMock2 = Substitute.For<ITestCommand2>();
+            var existingCommandMock3 = Substitute.For<ITestCommand1>();
+            var existingCommandMock4 = Substitute.For<ITestCommand4>();
+            var existingCommandMock5 = Substitute.For<ITestCommand5>();
             var plugins = new List<IPlugin>
             {
                 MockPluginWithCommands(new ICommand[]
                 {
-                    existingCommandMock1.Object,
-                    existingCommandMock2.Object,
+                    existingCommandMock1,
+                    existingCommandMock2,
                 }),
                 MockPluginWithCommands(new ICommand[]
                 {
-                    existingCommandMock3.Object,
-                    existingCommandMock4.Object,
-                    existingCommandMock5.Object,
+                    existingCommandMock3,
+                    existingCommandMock4,
+                    existingCommandMock5,
                 })
             };
-            var contextMock = new Mock<IPluginContext>(MockBehavior.Strict);
-            contextMock.Setup(c => c.Plugins).Returns(plugins);
-            var context = contextMock.Object;
+            var context = Substitute.For<IDefaultContext>();
+            context.Plugins.Returns(plugins);
 
             // Act
             await context.Plugins.ExecuteAsync<ITestCommand1>(context);
 
             // Assert
-            existingCommandMock1.Verify(c => c.Execute(It.Is<IPluginContext>(c => c == context)), Times.Once);
-            existingCommandMock2.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock3.Verify(c => c.Execute(It.Is<IPluginContext>(c => c == context)), Times.Once);
-            existingCommandMock4.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock5.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
+            existingCommandMock1.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
+            existingCommandMock2.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock3.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
+            existingCommandMock4.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock5.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
         }
 
         private static IPlugin MockPluginWithCommands(IEnumerable<ICommand> commands)
         {
-            var pluginMock = new Mock<AbstractPlugin>();
-            pluginMock!.Setup(p => p.Commands).Returns(commands);
-            return pluginMock.Object;
+            var pluginMock = Substitute.For<AbstractPlugin>();
+            pluginMock!.Commands.Returns(commands);
+            return pluginMock;
         }
 
         [TestMethod]
         public async Task ExecuteAsync_PluginsDoesNotHaveCommandType_CommandsAreNotExecuted()
         {
             // Prepare 
-            var existingCommandMock1 = MockCommand<ITestCommand1>();
-            var existingCommandMock2 = MockCommand<ITestCommand2>();
-            var existingCommandMock3 = MockCommand<ITestCommand1>();
-            var existingCommandMock4 = MockCommand<ITestCommand4>();
-            var existingCommandMock5 = MockCommand<ITestCommand5>();
+            var existingCommandMock1 = Substitute.For<ITestCommand1>();
+            var existingCommandMock2 = Substitute.For<ITestCommand2>();
+            var existingCommandMock3 = Substitute.For<ITestCommand1>();
+            var existingCommandMock4 = Substitute.For<ITestCommand4>();
+            var existingCommandMock5 = Substitute.For<ITestCommand5>();
             var plugins = new List<IPlugin>
             {
                 MockPluginWithCommands(new ICommand[]
                 {
-                    existingCommandMock1.Object,
-                    existingCommandMock2.Object,
+                    existingCommandMock1,
+                    existingCommandMock2,
                 }),
                 MockPluginWithCommands(new ICommand[]
                 {
-                    existingCommandMock3.Object,
-                    existingCommandMock4.Object,
-                    existingCommandMock5.Object,
+                    existingCommandMock3,
+                    existingCommandMock4,
+                    existingCommandMock5,
                 })
             };
-            var contextMock = new Mock<IPluginContext>(MockBehavior.Strict);
-            contextMock.Setup(c => c.Plugins).Returns(plugins);
-            var context = contextMock.Object;
+            var context = Substitute.For<IDefaultContext>();
+            context.Plugins.Returns(plugins);
 
             // Act
             await context.Plugins.ExecuteAsync<ITestCommand3>(context);
 
             // Assert
-            existingCommandMock1.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock2.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock3.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock4.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
-            existingCommandMock5.Verify(c => c.Execute(It.IsAny<IPluginContext>()), Times.Never);
+            existingCommandMock1.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock2.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock3.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock4.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock5.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
         }
     }
 }

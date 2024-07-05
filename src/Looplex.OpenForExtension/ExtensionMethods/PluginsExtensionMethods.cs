@@ -8,14 +8,14 @@ namespace Looplex.OpenForExtension.ExtensionMethods
 {
     public static class PluginsExtensionMethods
     {
-        public static async Task ExecuteAsync<T>(this IEnumerable<IPlugin> plugins, IPluginContext pluginContext) where T : ICommand
+        public static async Task ExecuteAsync<T>(this IEnumerable<IPlugin> plugins, IDefaultContext pluginContext) where T : ICommand
         {
             foreach (var plugin in plugins)
             {
                 await plugin.TryExecuteAsync<T>(pluginContext);
             }
         }
-        public static void Execute<T>(this IEnumerable<IPlugin> plugins, IPluginContext pluginContext) where T : ICommand
+        public static void Execute<T>(this IEnumerable<IPlugin> plugins, IDefaultContext pluginContext) where T : ICommand
         {
             foreach (var plugin in plugins)
             {

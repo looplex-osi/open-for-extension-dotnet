@@ -14,19 +14,19 @@ namespace Looplex.OpenForExtension.Plugins
         
         public abstract IEnumerable<ICommand> Commands { get; }
 
-        public void TryExecute<T>(IPluginContext commandContext) where T : ICommand
+        public void TryExecute<T>(IDefaultContext context) where T : ICommand
         {
             foreach (var command in Commands.Where(c => typeof(T).IsAssignableFrom(c.GetType())))
             {
-                command.Execute(commandContext);
+                command.Execute(context);
             }
         }
 
-        public Task TryExecuteAsync<T>(IPluginContext commandContext) where T : ICommand
+        public Task TryExecuteAsync<T>(IDefaultContext context) where T : ICommand
         {
             return Task.Run(() =>
             {
-                TryExecute<T>(commandContext);
+                TryExecute<T>(context);
             });
         }
     }

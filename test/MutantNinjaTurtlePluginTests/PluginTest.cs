@@ -1,7 +1,7 @@
 using Looplex.OpenForExtension.Commands;
-using BoyInTheAudiencePlugin;
+using MutantNinjaTurtlePlugin;
 
-namespace PluginSampleTests
+namespace MutantNinjaTurtlePluginTests
 {
     [TestClass]
     public class PluginTest
@@ -11,12 +11,11 @@ namespace PluginSampleTests
         {
             // Act
             var plugin = new Plugin();
-            
+
             // Assert
             Assert.IsNotNull(plugin);
-            Assert.AreEqual(2, plugin.Commands.Count());
+            Assert.AreEqual(1, plugin.Commands.Count());
             Assert.IsTrue(typeof(IDefineActors).IsAssignableFrom(plugin.Commands.First().GetType()));
-            Assert.IsTrue(typeof(IBind).IsAssignableFrom(plugin.Commands.Last().GetType()));
         }
     }
 }

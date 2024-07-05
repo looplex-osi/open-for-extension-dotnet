@@ -1,11 +1,9 @@
 using Looplex.OpenForExtension.Manager;
-using Looplex.OpenForExtensionTests;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace Looplex.OpenForExtension.ManagerTests
 {
     [TestClass]
-    public class PluginLoaderTest : OpenForExtensionTestsBase
+    public class PluginLoaderTest
     {
         [TestMethod]
         public void Constructor_PluginsPathsIsEmpty_PluginManagerIsCreated()
@@ -32,29 +30,18 @@ namespace Looplex.OpenForExtension.ManagerTests
 
             // Assert
             Assert.IsNotNull(loader);
-            Assert.AreEqual(1, plugins.Count());
+            Assert.AreEqual(2, plugins.Count());
         }
 
         private static IEnumerable<string> GetPluginsPaths()
         {
-            string root = Path.GetFullPath(Path.Combine(
-                Path.GetDirectoryName(
-                    Path.GetDirectoryName(
-                        Path.GetDirectoryName(
-                            Path.GetDirectoryName(
-                                Path.GetDirectoryName(
-                                    Path.GetDirectoryName(typeof(Program).Assembly.Location)!)!)!)!)!)!));
-
-            string[] pluginsPath = new string[] {
-                @"samples\PluginSample\bin\Debug\net8.0\PluginSample.dll",
-            };
-
-            foreach (var relativePath in pluginsPath)
+            string[] args = ["BoyInTheAudiencePlugin", "MutantNinjaTurtlePlugin"];
+            foreach (var pluginName in args)
             {
-                yield return Path.GetFullPath(Path.Combine(root, relativePath.Replace('\\', Path.DirectorySeparatorChar)));
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{pluginName}.dll");
+
+                yield return path;
             }
         }
-
-
     }
 }

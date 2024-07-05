@@ -19,7 +19,6 @@ namespace Looplex.OpenForExtension.Manager
         private static Assembly LoadAssembly(string pluginPath)
         {
             Console.WriteLine($"Loading commands from: {pluginPath}");
-
             var loadContext = new PluginLoadContext(pluginPath);
             return loadContext.LoadFromAssemblyName(
                 new AssemblyName(Path.GetFileNameWithoutExtension(pluginPath)));
@@ -29,11 +28,17 @@ namespace Looplex.OpenForExtension.Manager
         {
             foreach (Type type in assembly.GetTypes())
             {
-                if (typeof(IPlugin).IsAssignableFrom(type))
+                var interfaces = type.GetInterfaces();
+
+                foreach (var iface in interfaces)
                 {
-                    if (Activator.CreateInstance(type) is IPlugin plugin)
+                    // Check if the type implements the interface
+                    if (iface.FullName == typeof(IPlugin).FullName)
                     {
-                        yield return plugin;
+                        if (Activator.CreateInstance(type) is IPlugin plugin)
+                        {
+                            yield return plugin;
+                        }
                     }
                 }
             }

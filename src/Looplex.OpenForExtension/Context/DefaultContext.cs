@@ -9,6 +9,7 @@ namespace Looplex.OpenForExtension.Context
     {
         public bool SkipDefaultAction { get; set; } = false;
         public dynamic State { get; } = new ExpandoObject();
+        public IDictionary<string, dynamic> Actors { get; } = new Dictionary<string, dynamic>();
         public IList<IPlugin> Plugins { get; private set; }
         public IServiceProvider Services { get; private set; }
         public object Result { get; set; }

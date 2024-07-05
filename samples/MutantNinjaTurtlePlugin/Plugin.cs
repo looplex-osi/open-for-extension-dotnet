@@ -1,8 +1,8 @@
 ﻿using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Plugins;
-using PluginSample.Commands;
+using MutantNinjaTurtlePlugin.Commands;
 
-namespace PluginSample
+namespace MutantNinjaTurtlePlugin
 {
     public class Plugin : AbstractPlugin
     {
@@ -10,9 +10,9 @@ namespace PluginSample
 
         public override string? Description => "Plugin description";
 
-        public override IEnumerable<ICommand> Commands => new ICommand[]
-        {
-            new HandleInputCommand()
-        };
+        public override IEnumerable<ICommand> Commands =>
+        [
+            new DefineActorsCommand()
+        ];
     }
 }
