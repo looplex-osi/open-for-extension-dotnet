@@ -28,17 +28,11 @@ namespace Looplex.OpenForExtension.Manager
         {
             foreach (Type type in assembly.GetTypes())
             {
-                var interfaces = type.GetInterfaces();
-
-                foreach (var iface in interfaces)
+                if (typeof(IPlugin).IsAssignableFrom(type))
                 {
-                    // Check if the type implements the interface
-                    if (iface.FullName == typeof(IPlugin).FullName)
+                    if (Activator.CreateInstance(type) is IPlugin plugin)
                     {
-                        if (Activator.CreateInstance(type) is IPlugin plugin)
-                        {
-                            yield return plugin;
-                        }
+                        yield return plugin;
                     }
                 }
             }

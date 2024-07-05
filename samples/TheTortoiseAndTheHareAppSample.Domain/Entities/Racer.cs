@@ -1,9 +1,9 @@
 ﻿using Looplex.OpenForExtension.Traits;
 
-namespace TheTortoiseAndTheHare.Entities
+namespace TheTortoiseAndTheHareAppSample.Domain.Entities
 {
-    internal abstract class Racer : BaseEntity, IHasEventHandlerTrait
-    {        
+    public abstract class Racer : BaseEntity, IHasEventHandlerTrait
+    {
         private static readonly string StartedToRun = "StartedToRun";
         private static readonly string IsExausted = "IsExausted";
         private static readonly string FinishedTheRace = "FinishedTheRace";
@@ -45,7 +45,7 @@ namespace TheTortoiseAndTheHare.Entities
                 {
                     Endurance += 10;
                 }
-                else 
+                else
                 {
                     State = "Running";
                 }
@@ -65,7 +65,7 @@ namespace TheTortoiseAndTheHare.Entities
                     OnFinishedTheRace();
                     State = "Stopped";
                 };
-            }            
+            }
         }
 
         protected virtual void OnStartedToRun()
@@ -83,7 +83,7 @@ namespace TheTortoiseAndTheHare.Entities
             EventHandling.Invoke(FinishedTheRace, this, EventArgs.Empty);
         }
 
-        public void On(string eventName, EventHandler eventHandler) => 
+        public void On(string eventName, EventHandler eventHandler) =>
             EventHandling.On(eventName, eventHandler);
 
     }

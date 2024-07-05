@@ -10,15 +10,23 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.6" />
-	<PackageReference Include="Looplex.OpenForExtension.Loader" Version="1.0.6" />
+    <PackageReference Include="Looplex.OpenForExtension.Loader" Version="1.0.6" />
   </ItemGroup>
 
-  <Target Name="CopyMutantNinjaTurtlePluginDll" AfterTargets="Build">
-	<Copy SourceFiles="..\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.dll" DestinationFolder="$(OutputPath)" />
+  <ItemGroup>
+    <ProjectReference Include="..\TheTortoiseAndTheHareAppSample.Domain\TheTortoiseAndTheHareAppSample.Domain.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyMutantNinjaTurtlePlugin" AfterTargets="Build">
+	<Copy SourceFiles="..\..\samples\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.dll" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="..\..\samples\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.deps.json" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="..\..\samples\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.pdb" DestinationFolder="$(OutputPath)" />
   </Target>
 
-  <Target Name="CopyBoyInTheAudiencePluginDll" AfterTargets="Build">
-	<Copy SourceFiles="..\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.dll" DestinationFolder="$(OutputPath)" />
+  <Target Name="CopyBoyInTheAudiencePlugin" AfterTargets="Build">
+	<Copy SourceFiles="..\..\samples\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.dll" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="..\..\samples\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.deps.json" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="..\..\samples\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.pdb" DestinationFolder="$(OutputPath)" />
   </Target>
 
 </Project>

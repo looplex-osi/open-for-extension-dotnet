@@ -2,8 +2,9 @@
 using Looplex.OpenForExtension.Context;
 using Looplex.OpenForExtension.ExtensionMethods;
 using Microsoft.Extensions.DependencyInjection;
-using TheTortoiseAndTheHare.Entities;
-using TheTortoiseAndTheHare.Repositories;
+using System.Dynamic;
+using TheTortoiseAndTheHareAppSample.Domain.Entities;
+using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 
 namespace TheTortoiseAndTheHareAppSample.Services
 {
@@ -23,7 +24,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
             var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
             Tortoise? tortoise = tortoiseRepository.GetById(tortoiseId);
-            Hare? hare = hareRepository.GetById(hareId);
+            Hare? hare = hareRepository.GetById(hareId);            
 
             // Validations
             ValidateDistance(distance);

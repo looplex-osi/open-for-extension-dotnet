@@ -1,4 +1,5 @@
-﻿using TheTortoiseAndTheHare.Entities;
+﻿using TheTortoiseAndTheHareAppSample.Domain.Entities;
+using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 
 namespace TheTortoiseAndTheHare.Repositories
 {

@@ -15,7 +15,6 @@
 	<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
 	<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
 	<PackageReference Include="NSubstitute" Version="5.1.0" />
-	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.6"/>
   </ItemGroup>
 	
   <ItemGroup>
@@ -24,12 +23,14 @@
     <ProjectReference Include="..\Looplex.OpenForExtensionTests\Looplex.OpenForExtensionTests.csproj" />
   </ItemGroup>
 
-  <Target Name="CopyMutantNinjaTurtlePluginDll" AfterTargets="Build">
+  <Target Name="CopyMutantNinjaTurtlePlugin" AfterTargets="Build">
 	<Copy SourceFiles="..\..\samples\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.dll" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="..\..\samples\MutantNinjaTurtlePlugin\bin\$(Configuration)\net8.0\MutantNinjaTurtlePlugin.deps.json" DestinationFolder="$(OutputPath)" />
   </Target>
 
-  <Target Name="CopyBoyInTheAudiencePluginDll" AfterTargets="Build">
+  <Target Name="CopyBoyInTheAudiencePlugin" AfterTargets="Build">
 	<Copy SourceFiles="..\..\samples\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.dll" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="..\..\samples\BoyInTheAudiencePlugin\bin\$(Configuration)\net8.0\BoyInTheAudiencePlugin.deps.json" DestinationFolder="$(OutputPath)" />
   </Target>
 
 </Project>

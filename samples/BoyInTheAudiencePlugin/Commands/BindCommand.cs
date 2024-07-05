@@ -17,7 +17,7 @@ namespace BoyInTheAudiencePlugin.Commands
             context.Actors["Hare"].On("IsExausted", hareIsExausted);
 
             EventHandler tortoiseFinishedTheRace = (sender, e) => {
-                if (context.State.HareFinishTime == null)
+                if (!((IDictionary<string, object>)context.State).ContainsKey("HareFinishTime"))
                 {
                     context.Actors["BoyInTheAudience"].Celebrate();
                 }
