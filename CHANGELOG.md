@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.7"></a>
+## [1.0.7](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.0.7) (2024-07-05)
+
+### Bug Fixes
+
+* **samples:** fixed runtime error on plugins ([3eaa2eb](https://www.github.com/looplex-osi/open-for-extension-dotnet/commit/3eaa2eb1f2e29b31107fb48e38436c9b353d2b89))
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.0.6) (2024-07-05)
 
