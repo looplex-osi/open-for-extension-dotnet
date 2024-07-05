@@ -2,7 +2,6 @@
 using Looplex.OpenForExtension.Context;
 using Looplex.OpenForExtension.ExtensionMethods;
 using Microsoft.Extensions.DependencyInjection;
-using System.Dynamic;
 using TheTortoiseAndTheHareAppSample.Domain.Entities;
 using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 
