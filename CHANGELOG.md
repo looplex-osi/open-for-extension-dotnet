@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.8"></a>
+## [1.0.8](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.0.8) (2024-07-08)
+
+### Bug Fixes
+
+* **plugin:** now plugins can say what services methods they subscribe to ([d2ce9fb](https://www.github.com/looplex-osi/open-for-extension-dotnet/commit/d2ce9fb1c38b9e0ab4900c4b189d50ea1eeda687))
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.0.7) (2024-07-05)
 
