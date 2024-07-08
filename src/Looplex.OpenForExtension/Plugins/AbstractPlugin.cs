@@ -29,5 +29,7 @@ namespace Looplex.OpenForExtension.Plugins
                 TryExecute<T>(context);
             });
         }
+
+        public abstract IEnumerable<string> GetSubscriptions();
     }
 }

@@ -13,5 +13,6 @@ namespace Looplex.OpenForExtension.Plugins
 
         Task TryExecuteAsync<T>(IDefaultContext context) where T : ICommand;
         void TryExecute<T>(IDefaultContext context) where T : ICommand;
+        IEnumerable<string> GetSubscriptions();
     }
 }

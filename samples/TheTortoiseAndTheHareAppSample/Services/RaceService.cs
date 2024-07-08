@@ -69,7 +69,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             if (racer.Speed == 0)
             {
                 throw new InvalidOperationException($"Tortoise {racer.Name} can't race now.");
-            }            
+            }
         }
 
         private void BindEvents(IDefaultContext context, IList<dynamic> results)
