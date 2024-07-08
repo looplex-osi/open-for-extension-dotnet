@@ -3,6 +3,7 @@ using Looplex.OpenForExtension.Context;
 using MutantNinjaTurtlePlugin;
 using NSubstitute;
 using System.Dynamic;
+using MutantNinjaTurtlePluginTests.Mocks;
 
 namespace MutantNinjaTurtlePluginTests.Commands
 {
@@ -27,7 +28,7 @@ namespace MutantNinjaTurtlePluginTests.Commands
             context.Actors.Returns(actors);
 
             // Act
-            plugin.TryExecute<IDefineActors>(context);
+            new RaceService().StartRace(() => plugin.TryExecute<IDefineActors>(context));
 
             // Assert
             var expectedSpeed = context.Actors["Hare"].Speed * 2;

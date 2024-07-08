@@ -1,4 +1,5 @@
-﻿using Looplex.OpenForExtension.Commands;
+﻿using System.Diagnostics;
+using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
 
 namespace MutantNinjaTurtlePlugin.Commands
@@ -11,11 +12,16 @@ namespace MutantNinjaTurtlePlugin.Commands
 
         public void Execute(IDefaultContext context)
         {
-            dynamic tortoise = context.Actors["Tortoise"];
-            dynamic hare = context.Actors["Hare"];
+            if (new StackTrace().GetFrames()
+                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Any(caller => caller == "RaceService.StartRace"))
+            {
+                dynamic tortoise = context.Actors["Tortoise"];
+                dynamic hare = context.Actors["Hare"];
 
-            tortoise.Speed = hare.Speed * 2;
-            tortoise.Endurance = hare.Endurance * 2;
+                tortoise.Speed = hare.Speed * 2;
+                tortoise.Endurance = hare.Endurance * 2;
+            }
         }
     }
 }

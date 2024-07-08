@@ -1,4 +1,5 @@
-﻿using Looplex.OpenForExtension.Commands;
+﻿using System.Diagnostics;
+using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
 
 namespace BoyInTheAudiencePlugin.Commands
@@ -11,22 +12,34 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public void Execute(IDefaultContext context)
         {
-            EventHandler hareIsExausted = (sender, e) => {
-                context.Actors["BoyInTheAudience"].Cheer();
-            };
-            context.Actors["Hare"].On("IsExausted", hareIsExausted);
+            if (new StackTrace().GetFrames()
+                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Any(caller => caller == "RaceService.StartRace"))
+            {
+                void HareIsExausted(object? sender, EventArgs e)
+                {
+                    if (!((IDictionary<string, object>)context.State).ContainsKey("TortoiseFinishTime"))
+                    {
+                        context.Actors["BoyInTheAudience"].Cheer();
+                    }
+                }
 
-            EventHandler tortoiseFinishedTheRace = (sender, e) => {
-                if (!((IDictionary<string, object>)context.State).ContainsKey("HareFinishTime"))
+                context.Actors["Hare"].On("IsExausted", (EventHandler)HareIsExausted);
+
+                void TortoiseFinishedTheRace(object? sender, EventArgs e)
                 {
-                    context.Actors["BoyInTheAudience"].Celebrate();
+                    if (!((IDictionary<string, object>)context.State).ContainsKey("HareFinishTime"))
+                    {
+                        context.Actors["BoyInTheAudience"].Celebrate();
+                    }
+                    else
+                    {
+                        context.Actors["BoyInTheAudience"].Cry();
+                    }
                 }
-                else
-                {
-                    context.Actors["BoyInTheAudience"].Cry();
-                }
-            };
-            context.Actors["Tortoise"].On("FinishedTheRace", tortoiseFinishedTheRace);
+
+                context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace TheTortoiseAndTheHareAppSample
 
         private static IList<IPlugin> LoadPlugins(string[] args)
         {
-            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args)).ToList();
+            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args), ["RaceService.StartRace"]).ToList();
         }
 
         private static IEnumerable<string> GetPluginsPaths(string[] args)

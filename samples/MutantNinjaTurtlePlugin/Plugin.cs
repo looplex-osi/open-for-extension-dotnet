@@ -14,5 +14,10 @@ namespace MutantNinjaTurtlePlugin
         [
             new DefineActorsCommand()
         ];
+
+        public override IEnumerable<string> GetSubscriptions()=>
+        [
+            "RaceService.StartRace"
+        ];
     }
 }

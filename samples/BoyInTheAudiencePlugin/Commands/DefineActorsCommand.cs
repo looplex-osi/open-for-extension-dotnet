@@ -1,4 +1,5 @@
-﻿using BoyInTheAudiencePlugin.Entities;
+﻿using System.Diagnostics;
+using BoyInTheAudiencePlugin.Entities;
 using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
 
@@ -12,7 +13,12 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public void Execute(IDefaultContext context)
         {
-            context.Actors["BoyInTheAudience"] = new Boy();
+            if (new StackTrace().GetFrames()
+                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Any(caller => caller == "RaceService.StartRace"))
+            {
+                context.Actors["BoyInTheAudience"] = new Boy();
+            }
         }
     }
 }

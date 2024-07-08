@@ -1,7 +1,7 @@
 using Looplex.OpenForExtension.Commands;
 using BoyInTheAudiencePlugin;
 
-namespace PluginSampleTests
+namespace BoyInTheAudiencePluginTests
 {
     [TestClass]
     public class PluginTest

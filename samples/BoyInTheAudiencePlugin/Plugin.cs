@@ -15,5 +15,10 @@ namespace BoyInTheAudiencePlugin
             new DefineActorsCommand(),
             new BindCommand()
         ];
+
+        public override IEnumerable<string> GetSubscriptions()=>
+        [
+            "RaceService.StartRace"
+        ];
     }
 }

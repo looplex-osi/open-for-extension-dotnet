@@ -2,6 +2,7 @@ using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
 using BoyInTheAudiencePlugin;
 using NSubstitute;
+using BoyInTheAudiencePluginTests.Mocks;
 
 namespace BoyInTheAudiencePluginTests.Commands
 {
@@ -18,8 +19,8 @@ namespace BoyInTheAudiencePluginTests.Commands
             context.Actors.Returns(actors);
 
             // Act
-            plugin.TryExecute<IDefineActors>(context);
-
+            new RaceService().StartRace(() => plugin.TryExecute<IDefineActors>(context));
+            
             // Assert
             Assert.IsNotNull(context.Actors["BoyInTheAudience"]);
         }
