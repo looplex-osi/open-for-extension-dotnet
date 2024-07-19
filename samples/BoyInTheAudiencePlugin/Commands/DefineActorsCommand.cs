@@ -14,7 +14,7 @@ namespace BoyInTheAudiencePlugin.Commands
         public void Execute(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
-                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRace"))
             {
                 context.Actors["BoyInTheAudience"] = new Boy();

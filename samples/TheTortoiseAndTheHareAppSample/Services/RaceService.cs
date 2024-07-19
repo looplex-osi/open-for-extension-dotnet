@@ -22,8 +22,8 @@ namespace TheTortoiseAndTheHareAppSample.Services
             
             var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
             var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
-            Tortoise? tortoise = tortoiseRepository.GetById(tortoiseId);
-            Hare? hare = hareRepository.GetById(hareId);            
+            var tortoise = tortoiseRepository.GetById(tortoiseId);
+            var hare = hareRepository.GetById(hareId);            
 
             // Validations
             ValidateDistance(distance);
@@ -60,7 +60,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             }
         }
 
-        private void ValidateRacer(Guid id, Racer? racer)
+        private static void ValidateRacer(Guid id, Racer? racer)
         {
             if (racer == null)
             {
@@ -72,37 +72,38 @@ namespace TheTortoiseAndTheHareAppSample.Services
             }
         }
 
-        private void BindEvents(IDefaultContext context, IList<dynamic> results)
+        private static void BindEvents(IDefaultContext context, IList<dynamic> results)
         {
-            EventHandler tortoiseStartedToRun = (sender, e) => {
+            context.Actors["Tortoise"].On("StartedToRun", (EventHandler)TortoiseStartedToRun);
+            context.Actors["Hare"].On("StartedToRun", (EventHandler)HareStartedToRun);
+            context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
+            context.Actors["Hare"].On("FinishedTheRace", (EventHandler)HareFinishedTheRace);
+            return;
+            
+            void TortoiseStartedToRun(object? sender, EventArgs e)
+            {
                 context.State.TortoiseStartTime = DateTime.UtcNow;
-            };
-            context.Actors["Tortoise"].On("StartedToRun", tortoiseStartedToRun);
-
-            EventHandler hareStartedToRun = (sender, e) => {
+            }
+            void HareStartedToRun(object? sender, EventArgs e)
+            {
                 context.State.HareStartTime = DateTime.UtcNow;
-            };
-            context.Actors["Hare"].On("StartedToRun", hareStartedToRun);
-
-            EventHandler tortoiseFinishedTheRace = (sender, e) => {
+            }
+            void TortoiseFinishedTheRace(object? sender, EventArgs e)
+            {
                 context.State.TortoiseFinishTime = DateTime.UtcNow;
                 results.Add(new
                 {
-                    context.Actors["Tortoise"].Name,
-                    ElapsedTime = (context.State.TortoiseFinishTime - context.State.TortoiseStartTime).TotalSeconds
+                    context.Actors["Tortoise"].Name, ElapsedTime = (context.State.TortoiseFinishTime - context.State.TortoiseStartTime).TotalSeconds
                 });
-            };
-            context.Actors["Tortoise"].On("FinishedTheRace", tortoiseFinishedTheRace);
-
-            EventHandler hareFinishedTheRace = (sender, e) => {
+            }
+            void HareFinishedTheRace(object? sender, EventArgs e)
+            {
                 context.State.HareFinishTime = DateTime.UtcNow;
                 results.Add(new
                 {
-                    context.Actors["Hare"].Name,
-                    ElapsedTime = (context.State.HareFinishTime - context.State.HareStartTime).TotalSeconds
+                    context.Actors["Hare"].Name, ElapsedTime = (context.State.HareFinishTime - context.State.HareStartTime).TotalSeconds
                 });
-            };
-            context.Actors["Hare"].On("FinishedTheRace", hareFinishedTheRace);
+            }
         }
 
         private void DefaultAction(IDefaultContext context, int distance, IList<dynamic> results)
@@ -118,6 +119,49 @@ namespace TheTortoiseAndTheHareAppSample.Services
             }
 
             context.Result = results;
+        }
+        
+        public async Task StartRaceAsync(IDefaultContext context)
+        {
+            IList<dynamic> results = [];
+
+            ArgumentNullException.ThrowIfNull(context);
+
+            Guid tortoiseId = context.State.TortoiseId;
+            Guid hareId = context.State.HareId;
+            int distance = context.State.Distance;
+            await context.Plugins.ExecuteAsync<IHandleInput>(context);
+            
+            var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
+            var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
+            var tortoise = tortoiseRepository.GetById(tortoiseId);
+            var hare = hareRepository.GetById(hareId);            
+
+            // Validations
+            ValidateDistance(distance);
+            ValidateRacer(tortoiseId, tortoise);
+            ValidateRacer(hareId, hare);
+            await context.Plugins.ExecuteAsync<IValidateInput>(context);
+
+            // Define actors
+            context.Actors.Add("Tortoise", tortoise);
+            context.Actors.Add("Hare", hare);
+            await context.Plugins.ExecuteAsync<IDefineActors>(context);
+
+            // Bind events
+            BindEvents(context, results);
+            await context.Plugins.ExecuteAsync<IBind>(context); 
+
+            await context.Plugins.ExecuteAsync<IBeforeAction>(context);
+
+            if (!context.SkipDefaultAction)
+            {
+                DefaultAction(context, distance, results);
+            }
+
+            await context.Plugins.ExecuteAsync<IAfterAction>(context); 
+
+            await context.Plugins.ExecuteAsync<IReleaseUnmanagedResources>(context); 
         }
     }
 }

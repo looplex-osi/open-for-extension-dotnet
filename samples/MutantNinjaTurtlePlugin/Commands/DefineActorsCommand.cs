@@ -13,7 +13,7 @@ namespace MutantNinjaTurtlePlugin.Commands
         public void Execute(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
-                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRace"))
             {
                 dynamic tortoise = context.Actors["Tortoise"];
@@ -21,6 +21,7 @@ namespace MutantNinjaTurtlePlugin.Commands
 
                 tortoise.Speed = hare.Speed * 2;
                 tortoise.Endurance = hare.Endurance * 2;
+                tortoise.Name = "Ninja turtle";
             }
         }
     }

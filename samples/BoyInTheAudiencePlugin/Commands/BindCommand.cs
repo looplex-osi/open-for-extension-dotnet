@@ -13,17 +13,9 @@ namespace BoyInTheAudiencePlugin.Commands
         public void Execute(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
-                .Select(f => $"{f.GetMethod().DeclaringType?.Name}.{f.GetMethod().Name}")
+                .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRace"))
             {
-                void HareIsExausted(object? sender, EventArgs e)
-                {
-                    if (!((IDictionary<string, object>)context.State).ContainsKey("TortoiseFinishTime"))
-                    {
-                        context.Actors["BoyInTheAudience"].Cheer();
-                    }
-                }
-
                 context.Actors["Hare"].On("IsExausted", (EventHandler)HareIsExausted);
 
                 void TortoiseFinishedTheRace(object? sender, EventArgs e)
@@ -39,6 +31,15 @@ namespace BoyInTheAudiencePlugin.Commands
                 }
 
                 context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
+            }
+            return;
+            
+            void HareIsExausted(object? sender, EventArgs e)
+            {
+                if (!((IDictionary<string, object>)context.State).ContainsKey("TortoiseFinishTime"))
+                {
+                    context.Actors["BoyInTheAudience"].Cheer();
+                }
             }
         }
     }

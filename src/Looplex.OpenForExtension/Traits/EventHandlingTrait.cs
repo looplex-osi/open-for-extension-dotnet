@@ -8,7 +8,6 @@ namespace Looplex.OpenForExtension.Traits
     {
         private readonly IList<string> _events;
         private readonly IDictionary<string, EventHandler> _handlers = new Dictionary<string, EventHandler>();
-        private object value;
 
         public EventHandlingTrait(string[] events)
         {

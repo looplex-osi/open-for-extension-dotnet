@@ -18,7 +18,7 @@ namespace BoyInTheAudiencePlugin
 
         public override IEnumerable<string> GetSubscriptions()=>
         [
-            "RaceService.StartRace"
+            "RaceService.StartRaceAsync"
         ];
     }
 }

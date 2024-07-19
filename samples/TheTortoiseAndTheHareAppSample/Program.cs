@@ -12,7 +12,7 @@ namespace TheTortoiseAndTheHareAppSample
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<IRepository<Hare>, InMemoryRepository<Hare>>();
@@ -23,10 +23,10 @@ namespace TheTortoiseAndTheHareAppSample
             var tortoiseRepository = serviceProvider.GetRequiredService<IRepository<Tortoise>>();
 
             // Use the repositories
-            var hare = new Hare { Name = "Speedy", Speed = 100, Endurance = 10 };
+            var hare = new Hare { Name = "Hare", Speed = 100, Endurance = 10 };
             hareRepository.Add(hare);
 
-            var tortoise = new Tortoise { Name = "Steady", Speed = 10, Endurance = 10000 };
+            var tortoise = new Tortoise { Name = "Tortoise", Speed = 10, Endurance = 10000 };
             tortoiseRepository.Add(tortoise);
 
             var context = DefaultContext.Create(LoadPlugins(args), serviceProvider);
@@ -36,10 +36,13 @@ namespace TheTortoiseAndTheHareAppSample
 
             var service = new RaceService();
 
-            service.StartRace(context);
+            if (args.Length > 0)
+                await service.StartRaceAsync(context);
+            else
+                service.StartRace(context);
 
             var placements = context.Result;
-            string jsonString = JsonSerializer.Serialize(placements);
+            var jsonString = JsonSerializer.Serialize(placements);
             Console.WriteLine(jsonString);
 
             Console.WriteLine("Waiting for any key ...");
@@ -48,7 +51,7 @@ namespace TheTortoiseAndTheHareAppSample
 
         private static IList<IPlugin> LoadPlugins(string[] args)
         {
-            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args), ["RaceService.StartRace"]).ToList();
+            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args), ["RaceService.StartRaceAsync"]).ToList();
         }
 
         private static IEnumerable<string> GetPluginsPaths(string[] args)
