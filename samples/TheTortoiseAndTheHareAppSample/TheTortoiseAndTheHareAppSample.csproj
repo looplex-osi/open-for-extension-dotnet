@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.9" />
-    <PackageReference Include="Looplex.OpenForExtension.Loader" Version="1.0.9" />
+	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.10" />
+    <PackageReference Include="Looplex.OpenForExtension.Loader" Version="1.0.10" />
   </ItemGroup>
 
   <ItemGroup>

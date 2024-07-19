@@ -8,7 +8,7 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.9">
+    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.10">
 	    <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
