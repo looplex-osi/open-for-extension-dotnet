@@ -1,6 +1,6 @@
-using Looplex.OpenForExtension.Manager;
+using Looplex.OpenForExtension.Loader;
 
-namespace Looplex.OpenForExtension.ManagerTests
+namespace Looplex.OpenForExtension.LoaderTests
 {
     [TestClass]
     public class PluginLoaderTest

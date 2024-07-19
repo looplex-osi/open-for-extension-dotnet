@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Loader;
 
-namespace Looplex.OpenForExtension.Manager
+namespace Looplex.OpenForExtension.Loader
 {
     internal class PluginLoadContext : AssemblyLoadContext
     {

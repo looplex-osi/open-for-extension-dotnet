@@ -1,7 +1,7 @@
-﻿using Looplex.OpenForExtension.Plugins;
-using System.Reflection;
+﻿using System.Reflection;
+using Looplex.OpenForExtension.Plugins;
 
-namespace Looplex.OpenForExtension.Manager
+namespace Looplex.OpenForExtension.Loader
 {
     public class PluginLoader
     {

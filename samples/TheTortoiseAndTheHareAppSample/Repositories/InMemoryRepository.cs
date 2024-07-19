@@ -1,7 +1,7 @@
 ﻿using TheTortoiseAndTheHareAppSample.Domain.Entities;
 using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 
-namespace TheTortoiseAndTheHare.Repositories
+namespace TheTortoiseAndTheHareAppSample.Repositories
 {
     internal class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
