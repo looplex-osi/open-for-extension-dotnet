@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.9"></a>
+## 1.0.9 (2024-07-19)
+
+### Bug Fixes
+
+* **openforextension:** fixed async execute not working
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.0.8) (2024-07-08)
 
