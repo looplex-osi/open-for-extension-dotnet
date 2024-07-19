@@ -1,4 +1,5 @@
-﻿using Looplex.OpenForExtension.Context;
+﻿using System.Threading.Tasks;
+using Looplex.OpenForExtension.Context;
 
 namespace Looplex.OpenForExtension.Commands
 {
@@ -6,6 +7,6 @@ namespace Looplex.OpenForExtension.Commands
     {
         string Name { get; }
         string Description { get; }
-        void Execute(IDefaultContext context);
+        Task ExecuteAsync(IDefaultContext context);
     }
 }

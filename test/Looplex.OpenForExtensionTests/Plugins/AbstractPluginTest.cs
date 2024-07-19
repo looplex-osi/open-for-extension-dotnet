@@ -35,9 +35,9 @@ namespace Looplex.OpenForExtensionTests.Plugins
             plugin.TryExecute<ITestCommand1>(context);
 
             // Assert
-            existingCommandMock1.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock2.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock3.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
+            existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
+            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
         }
 
         [TestMethod]
@@ -59,9 +59,9 @@ namespace Looplex.OpenForExtensionTests.Plugins
             plugin.TryExecute<ITestCommand4>(context);
 
             // Assert
-            existingCommandMock1.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
-            existingCommandMock2.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
-            existingCommandMock3.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
         }
 
         [TestMethod]
@@ -83,9 +83,9 @@ namespace Looplex.OpenForExtensionTests.Plugins
             await plugin.TryExecuteAsync<ITestCommand1>(context);
 
             // Assert
-            existingCommandMock1.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock2.Received(1).Execute(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock3.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
+            await existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
+            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
         }
 
         [TestMethod]
@@ -107,9 +107,9 @@ namespace Looplex.OpenForExtensionTests.Plugins
             await plugin.TryExecuteAsync<ITestCommand5>(context);
 
             // Assert
-            existingCommandMock1.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
-            existingCommandMock2.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
-            existingCommandMock3.DidNotReceive().Execute(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
         }
     }
 }
