@@ -1,8 +1,8 @@
 ﻿using Looplex.OpenForExtension.Context;
-using Looplex.OpenForExtension.Manager;
 using Looplex.OpenForExtension.Plugins;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
+using Looplex.OpenForExtension.Loader;
 using TheTortoiseAndTheHareAppSample.Domain.Entities;
 using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 using TheTortoiseAndTheHareAppSample.Repositories;
