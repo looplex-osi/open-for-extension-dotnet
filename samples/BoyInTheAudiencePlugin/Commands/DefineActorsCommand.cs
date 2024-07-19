@@ -11,14 +11,16 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public string Description => "Adds the boy to the actors dict";
 
-        public void Execute(IDefaultContext context)
+        public Task ExecuteAsync(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
-                .Any(caller => caller == "RaceService.StartRace"))
+                .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
                 context.Actors["BoyInTheAudience"] = new Boy();
             }
+            
+            return Task.CompletedTask;
         }
     }
 }

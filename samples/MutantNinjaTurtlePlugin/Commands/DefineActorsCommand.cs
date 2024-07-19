@@ -10,11 +10,11 @@ namespace MutantNinjaTurtlePlugin.Commands
 
         public string Description => "Modifies the tortoise to be invincible";
 
-        public void Execute(IDefaultContext context)
+        public Task ExecuteAsync(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
-                .Any(caller => caller == "RaceService.StartRace"))
+                .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
                 dynamic tortoise = context.Actors["Tortoise"];
                 dynamic hare = context.Actors["Hare"];
@@ -23,6 +23,8 @@ namespace MutantNinjaTurtlePlugin.Commands
                 tortoise.Endurance = hare.Endurance * 2;
                 tortoise.Name = "Ninja turtle";
             }
+
+            return Task.CompletedTask;
         }
     }
 }

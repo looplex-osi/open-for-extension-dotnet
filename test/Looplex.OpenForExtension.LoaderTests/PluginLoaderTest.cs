@@ -26,7 +26,7 @@ namespace Looplex.OpenForExtension.LoaderTests
             var loader = new PluginLoader();
 
             // Act
-            var plugins = loader.LoadPlugins(GetPluginsPaths(), ["RaceService.StartRace"]);
+            var plugins = loader.LoadPlugins(GetPluginsPaths(), ["RaceService.StartRaceAsync"]);
 
             // Assert
             Assert.IsNotNull(loader);

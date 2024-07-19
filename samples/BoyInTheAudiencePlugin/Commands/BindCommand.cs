@@ -10,11 +10,11 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public string Description => "The boy will cheer for the tortoise";
 
-        public void Execute(IDefaultContext context)
+        public Task ExecuteAsync(IDefaultContext context)
         {
             if (new StackTrace().GetFrames()
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
-                .Any(caller => caller == "RaceService.StartRace"))
+                .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
                 context.Actors["Hare"].On("IsExausted", (EventHandler)HareIsExausted);
 
@@ -32,7 +32,7 @@ namespace BoyInTheAudiencePlugin.Commands
 
                 context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
             }
-            return;
+            return Task.CompletedTask;
             
             void HareIsExausted(object? sender, EventArgs e)
             {

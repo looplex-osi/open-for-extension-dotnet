@@ -2,7 +2,7 @@
 
 public class RaceService
 {
-    public void StartRace(Action a)
+    public void StartRaceAsync(Action a)
     {
         a();
     }
