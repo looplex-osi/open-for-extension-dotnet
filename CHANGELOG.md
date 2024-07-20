@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.11"></a>
+## 1.0.11 (2024-07-20)
+
+### Bug Fixes
+
+* added cancelation token to plugins
+
 <a name="1.0.10"></a>
 ## 1.0.10 (2024-07-19)
 
