@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoyInTheAudiencePluginTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheTortoiseAndTheHareAppSample.Domain", "samples\TheTortoiseAndTheHareAppSample.Domain\TheTortoiseAndTheHareAppSample.Domain.csproj", "{39A11E0E-9029-4C3A-B391-2A67E71D4B84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Looplex.OpenForExtension.Abstractions", "src\Looplex.OpenForExtension.Abstractions\Looplex.OpenForExtension.Abstractions.csproj", "{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{39A11E0E-9029-4C3A-B391-2A67E71D4B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A11E0E-9029-4C3A-B391-2A67E71D4B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A11E0E-9029-4C3A-B391-2A67E71D4B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{AF7BB779-D8FB-43C0-9038-4DF212A07E53} = {1B623AB2-68B0-48E5-8C0A-68727004AD99}
 		{A8DCFAEA-E9B0-40B6-BD4D-E5C3656D1D6C} = {1F361E57-C4D2-444A-B87A-5FA27423AA39}
 		{39A11E0E-9029-4C3A-B391-2A67E71D4B84} = {1B623AB2-68B0-48E5-8C0A-68727004AD99}
+		{C89D4CD6-D18D-4BAA-87E3-591BA04B7BDA} = {F6F8E53B-E11D-4687-AC16-569263ECE9AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4ADB95D4-95E3-4ECC-A9B0-96C8746F5B00}

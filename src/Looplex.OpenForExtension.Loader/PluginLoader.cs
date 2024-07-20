@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using Looplex.OpenForExtension.Plugins;
+using Looplex.OpenForExtension.Abstractions.Plugins;
 
 namespace Looplex.OpenForExtension.Loader
 {
-    public class PluginLoader
+    public sealed class PluginLoader
     {
-        public virtual IEnumerable<IPlugin> LoadPlugins(IEnumerable<string> pluginsPaths, IList<string> subscriptions)
+        public IEnumerable<IPlugin> LoadPlugins(IEnumerable<string> pluginsPaths, IList<string> subscriptions)
         {
             var plugins = new List<IPlugin>();
             foreach (var pluginPath in pluginsPaths)

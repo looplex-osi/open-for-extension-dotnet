@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using BoyInTheAudiencePlugin.Entities;
 using Looplex.OpenForExtension.Commands;
-using Looplex.OpenForExtension.Context;
 
 namespace BoyInTheAudiencePlugin.Commands
 {

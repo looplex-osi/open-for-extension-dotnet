@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Looplex.OpenForExtension.Commands;
-using Looplex.OpenForExtension.Context;
 
 namespace MutantNinjaTurtlePlugin.Commands
 {

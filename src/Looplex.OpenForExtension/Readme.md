@@ -2,28 +2,36 @@
 
 ## Description
 
-This is a simple framework that allows an easy aplication of the Open for Extension SOLID principle in .Net projects. 
+**Looplex.OpenForExtension** provides default implementations for the interfaces defined in `Looplex.OpenForExtension.Abstractions`, including `IContext`, `IPlugin`, and `IEventHandlingTrait`. These implementations offer a solid foundation for extending and customizing your project's kernel architecture.
 
-## The IPlugin interface 
+## Table of Contents
 
-This is the contract to implement a plugin. It is composed of N commands of a specific type.
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contact](#contact)
 
-### The AbstracPlugin class
+## Installation
 
-You can use inherit this abstract class instead of using the IPlugin interface to take advantage of the already implemented Execute and ExecuteAsync methods.
+To install Looplex.OpenForExtension, use the following command:
 
-## The ICommand interface
+```bash
+dotnet add package Looplex.OpenForExtension
+```
 
-This is the contract to implement the commands (extended behaviour) of your plugin class.
+## Usage
 
-## The IPluginContext interface
+For more detailed examples, refer to the samples project on the [repository page](https://github.com/looplex-osi/open-for-extension-dotnet) .
 
-This is the context in which you can define configuration, settings and shared data between the plugins and the application.
+## License
 
-## The AbstractPluginContext interface
+This project is licensed under the Looplex Limited Public License. Feel free to edit and distribute this template as you like.
 
-You can use inherit this abstract class instead of using the IPluginContext interface to take advantage of the already defined default properties.
+See [`LICENSE.md`](/LICENSE.md) for more information.
 
-## The PluginExtensionMethods class
+## Contact
+If you have any questions or feedback, feel free to reach out:
 
-This is a class that contains extension methods to allow calling the Execute or ExecuteAsync method directly from a IEnumerable of IPlugin.
+	•	Email: guilherme.camara@outlook.com.br
+	•	Email: guilherme.camara@looplex.com.br
+	•	Email: dev@looplex.com.br

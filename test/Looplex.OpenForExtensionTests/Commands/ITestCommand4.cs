@@ -1,4 +1,4 @@
-﻿using Looplex.OpenForExtension.Commands;
+﻿using Looplex.OpenForExtension.Abstractions.Commands;
 
 namespace Looplex.OpenForExtensionTests.Commands
 {

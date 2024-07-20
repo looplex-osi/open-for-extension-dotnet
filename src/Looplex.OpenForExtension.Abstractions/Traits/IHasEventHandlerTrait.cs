@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Looplex.OpenForExtension.Traits
+namespace Looplex.OpenForExtension.Abstractions.Traits
 {
     public interface IHasEventHandlerTrait
     {
-        EventHandlingTrait EventHandling { get; }
+        IEventHandlingTrait EventHandling { get; }
         void On(string eventName, EventHandler eventHandler);
     }
 }

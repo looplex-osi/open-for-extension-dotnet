@@ -1,9 +1,10 @@
-﻿using Looplex.OpenForExtension.Commands;
-using Looplex.OpenForExtension.Context;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
+using Looplex.OpenForExtension.Abstractions.Plugins;
 
 namespace Looplex.OpenForExtension.Plugins
 {
@@ -15,12 +16,12 @@ namespace Looplex.OpenForExtension.Plugins
         
         public abstract IEnumerable<ICommand> Commands { get; }
 
-        public virtual void TryExecute<T>(IDefaultContext context, CancellationToken cancellationToken) where T : ICommand
+        public virtual void Execute<T>(IContext context, CancellationToken cancellationToken) where T : ICommand
         {
-            TryExecuteAsync<T>(context, cancellationToken).GetAwaiter().GetResult();
+            ExecuteAsync<T>(context, cancellationToken).GetAwaiter().GetResult();
         }
 
-        public virtual async Task TryExecuteAsync<T>(IDefaultContext context, CancellationToken cancellationToken) where T : ICommand
+        public virtual async Task ExecuteAsync<T>(IContext context, CancellationToken cancellationToken) where T : ICommand
         {
             foreach (var command in Commands.Where(c => typeof(T).IsAssignableFrom(c.GetType())))
             {

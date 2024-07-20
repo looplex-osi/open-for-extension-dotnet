@@ -7,14 +7,18 @@
 	<PackageId>Looplex.OpenForExtension</PackageId>
 	<Authors>Guilherme Câmara</Authors>
 	<Company>Looplex</Company>
-	<PackageTags>Looplex;OpenForExtension;Plugin;PluginFactory;</PackageTags>
+	<PackageTags>Looplex;OpenForExtension;Plugin;Default;</PackageTags>
 	<Description>
-		Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
+        Looplex.OpenForExtension provides default implementations for the interfaces defined in Looplex.OpenForExtension.Abstractions, including IContext, IPlugin, and IEventHandlingTrait. These implementations offer a solid foundation for extending and customizing your project's kernel architecture.
 	</Description>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Looplex.OpenForExtension.Abstractions\Looplex.OpenForExtension.Abstractions.csproj" />
+  </ItemGroup>
 	
   <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'">
  	<Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />

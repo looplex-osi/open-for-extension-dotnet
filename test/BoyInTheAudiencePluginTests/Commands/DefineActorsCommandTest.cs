@@ -1,5 +1,4 @@
 using Looplex.OpenForExtension.Commands;
-using Looplex.OpenForExtension.Context;
 using BoyInTheAudiencePlugin;
 using NSubstitute;
 using BoyInTheAudiencePluginTests.Mocks;

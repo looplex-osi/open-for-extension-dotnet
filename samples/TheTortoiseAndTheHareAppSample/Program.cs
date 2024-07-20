@@ -1,5 +1,4 @@
-﻿using Looplex.OpenForExtension.Context;
-using Looplex.OpenForExtension.Plugins;
+﻿using Looplex.OpenForExtension.Plugins;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 using Looplex.OpenForExtension.Loader;
