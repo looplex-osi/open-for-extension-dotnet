@@ -7,7 +7,11 @@
     <Nullable>enable</Nullable>
 	<IsPackable>true</IsPackable>
 	<PackageId>Looplex.OpenForExtension.Loader</PackageId>
-	<Authors>Guilherme Câmara</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseUrl>https://github.com/looplex-osi/open-for-extension-dotnet/blob/master/LICENSE.md</PackageLicenseUrl>
+      <PackageProjectUrl>https://github.com/looplex-osi/open-for-extension-dotnet</PackageProjectUrl>
+      <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+      <Authors>Guilherme Câmara</Authors>
 	<Company>Looplex</Company>
 	<PackageTags>Looplex;OpenForExtension;Plugin;PluginLoader;</PackageTags>
 	<Description>
@@ -18,6 +22,10 @@
 	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+    
   <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'">
     <Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />
   </Target>
