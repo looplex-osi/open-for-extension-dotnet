@@ -9,7 +9,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
 {
     internal class RaceService
     {        
-        public void StartRace(IDefaultContext context)
+        public void StartRace(IDefaultContext context, CancellationToken cancellationToken)
         {
             IList<dynamic> results = [];
 
@@ -18,7 +18,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             Guid tortoiseId = context.State.TortoiseId;
             Guid hareId = context.State.HareId;
             int distance = context.State.Distance;
-            context.Plugins.Execute<IHandleInput>(context);
+            context.Plugins.Execute<IHandleInput>(context, cancellationToken);
             
             var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
             var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
@@ -29,27 +29,27 @@ namespace TheTortoiseAndTheHareAppSample.Services
             ValidateDistance(distance);
             ValidateRacer(tortoiseId, tortoise);
             ValidateRacer(hareId, hare);
-            context.Plugins.Execute<IValidateInput>(context);
+            context.Plugins.Execute<IValidateInput>(context, cancellationToken);
 
             // Define actors
             context.Actors.Add("Tortoise", tortoise);
             context.Actors.Add("Hare", hare);
-            context.Plugins.Execute<IDefineActors>(context);
+            context.Plugins.Execute<IDefineActors>(context, cancellationToken);
 
             // Bind events
             BindEvents(context, results);
-            context.Plugins.Execute<IBind>(context); 
+            context.Plugins.Execute<IBind>(context, cancellationToken); 
 
-            context.Plugins.Execute<IBeforeAction>(context);
+            context.Plugins.Execute<IBeforeAction>(context, cancellationToken);
 
             if (!context.SkipDefaultAction)
             {
                 DefaultAction(context, distance, results);
             }
 
-            context.Plugins.Execute<IAfterAction>(context); 
+            context.Plugins.Execute<IAfterAction>(context, cancellationToken); 
 
-            context.Plugins.Execute<IReleaseUnmanagedResources>(context); 
+            context.Plugins.Execute<IReleaseUnmanagedResources>(context, cancellationToken); 
         }
 
         private void ValidateDistance(int distance)
@@ -121,7 +121,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             context.Result = results;
         }
         
-        public async Task StartRaceAsync(IDefaultContext context)
+        public async Task StartRaceAsync(IDefaultContext context, CancellationToken cancellationToken)
         {
             IList<dynamic> results = [];
 
@@ -130,7 +130,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
             Guid tortoiseId = context.State.TortoiseId;
             Guid hareId = context.State.HareId;
             int distance = context.State.Distance;
-            await context.Plugins.ExecuteAsync<IHandleInput>(context);
+            await context.Plugins.ExecuteAsync<IHandleInput>(context, cancellationToken);
             
             var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
             var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
@@ -141,27 +141,27 @@ namespace TheTortoiseAndTheHareAppSample.Services
             ValidateDistance(distance);
             ValidateRacer(tortoiseId, tortoise);
             ValidateRacer(hareId, hare);
-            await context.Plugins.ExecuteAsync<IValidateInput>(context);
+            await context.Plugins.ExecuteAsync<IValidateInput>(context, cancellationToken);
 
             // Define actors
             context.Actors.Add("Tortoise", tortoise);
             context.Actors.Add("Hare", hare);
-            await context.Plugins.ExecuteAsync<IDefineActors>(context);
+            await context.Plugins.ExecuteAsync<IDefineActors>(context, cancellationToken);
 
             // Bind events
             BindEvents(context, results);
-            await context.Plugins.ExecuteAsync<IBind>(context); 
+            await context.Plugins.ExecuteAsync<IBind>(context, cancellationToken); 
 
-            await context.Plugins.ExecuteAsync<IBeforeAction>(context);
+            await context.Plugins.ExecuteAsync<IBeforeAction>(context, cancellationToken);
 
             if (!context.SkipDefaultAction)
             {
                 DefaultAction(context, distance, results);
             }
 
-            await context.Plugins.ExecuteAsync<IAfterAction>(context); 
+            await context.Plugins.ExecuteAsync<IAfterAction>(context, cancellationToken); 
 
-            await context.Plugins.ExecuteAsync<IReleaseUnmanagedResources>(context); 
+            await context.Plugins.ExecuteAsync<IReleaseUnmanagedResources>(context, cancellationToken); 
         }
     }
 }

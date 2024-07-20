@@ -37,9 +37,9 @@ namespace TheTortoiseAndTheHareAppSample
             var service = new RaceService();
 
             if (args.Length > 0)
-                await service.StartRaceAsync(context);
+                await service.StartRaceAsync(context, CancellationToken.None);
             else
-                service.StartRace(context);
+                service.StartRace(context, CancellationToken.None);
 
             var placements = context.Result;
             var jsonString = JsonSerializer.Serialize(placements);

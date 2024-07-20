@@ -10,8 +10,10 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public string Description => "The boy will cheer for the tortoise";
 
-        public Task ExecuteAsync(IDefaultContext context)
+        public Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             if (new StackTrace().GetFrames()
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRaceAsync"))

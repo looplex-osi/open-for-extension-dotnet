@@ -19,7 +19,7 @@ namespace BoyInTheAudiencePluginTests.Commands
             context.Actors.Returns(actors);
 
             // Act
-            new RaceService().StartRaceAsync(() => plugin.TryExecute<IDefineActors>(context));
+            new RaceService().StartRaceAsync(() => plugin.TryExecute<IDefineActors>(context, CancellationToken.None));
             
             // Assert
             Assert.IsNotNull(context.Actors["BoyInTheAudience"]);

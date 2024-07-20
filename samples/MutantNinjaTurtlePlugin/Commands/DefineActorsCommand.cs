@@ -10,8 +10,10 @@ namespace MutantNinjaTurtlePlugin.Commands
 
         public string Description => "Modifies the tortoise to be invincible";
 
-        public Task ExecuteAsync(IDefaultContext context)
+        public Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             if (new StackTrace().GetFrames()
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRaceAsync"))

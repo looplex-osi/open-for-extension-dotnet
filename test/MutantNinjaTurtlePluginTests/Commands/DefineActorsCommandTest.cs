@@ -28,7 +28,7 @@ namespace MutantNinjaTurtlePluginTests.Commands
             context.Actors.Returns(actors);
 
             // Act
-            new RaceService().StartRaceAsync(() => plugin.TryExecute<IDefineActors>(context));
+            new RaceService().StartRaceAsync(() => plugin.TryExecute<IDefineActors>(context, CancellationToken.None));
 
             // Assert
             var expectedSpeed = context.Actors["Hare"].Speed * 2;
