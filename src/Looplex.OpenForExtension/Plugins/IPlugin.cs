@@ -1,6 +1,7 @@
 ﻿using Looplex.OpenForExtension.Commands;
 using Looplex.OpenForExtension.Context;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Looplex.OpenForExtension.Plugins
@@ -11,8 +12,8 @@ namespace Looplex.OpenForExtension.Plugins
         string Description { get; }
         IEnumerable<ICommand> Commands { get; }
 
-        Task TryExecuteAsync<T>(IDefaultContext context) where T : ICommand;
-        void TryExecute<T>(IDefaultContext context) where T : ICommand;
+        Task TryExecuteAsync<T>(IDefaultContext context, CancellationToken cancellationToken) where T : ICommand;
+        void TryExecute<T>(IDefaultContext context, CancellationToken cancellationToken) where T : ICommand;
         IEnumerable<string> GetSubscriptions();
     }
 }

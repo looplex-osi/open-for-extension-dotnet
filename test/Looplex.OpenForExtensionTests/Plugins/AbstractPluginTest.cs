@@ -32,12 +32,12 @@ namespace Looplex.OpenForExtensionTests.Plugins
             var context = Substitute.For<IDefaultContext>();
 
             // Act            
-            plugin.TryExecute<ITestCommand1>(context);
+            plugin.TryExecute<ITestCommand1>(context, CancellationToken.None);
 
             // Assert
-            existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
 
         [TestMethod]
@@ -56,12 +56,12 @@ namespace Looplex.OpenForExtensionTests.Plugins
             var context = Substitute.For<IDefaultContext>();
 
             // Act            
-            plugin.TryExecute<ITestCommand4>(context);
+            plugin.TryExecute<ITestCommand4>(context, CancellationToken.None);
 
             // Assert
-            existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
 
         [TestMethod]
@@ -80,12 +80,12 @@ namespace Looplex.OpenForExtensionTests.Plugins
             var context = Substitute.For<IDefaultContext>();
 
             // Act            
-            await plugin.TryExecuteAsync<ITestCommand1>(context);
+            await plugin.TryExecuteAsync<ITestCommand1>(context, CancellationToken.None);
 
             // Assert
-            await existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            await existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            await existingCommandMock2.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
 
         [TestMethod]
@@ -104,12 +104,12 @@ namespace Looplex.OpenForExtensionTests.Plugins
             var context = Substitute.For<IDefaultContext>();
 
             // Act            
-            await plugin.TryExecuteAsync<ITestCommand5>(context);
+            await plugin.TryExecuteAsync<ITestCommand5>(context, CancellationToken.None);
 
             // Assert
-            await existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
     }
 }

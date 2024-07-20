@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Looplex.OpenForExtension.Context;
 
 namespace Looplex.OpenForExtension.Commands
@@ -7,6 +8,6 @@ namespace Looplex.OpenForExtension.Commands
     {
         string Name { get; }
         string Description { get; }
-        Task ExecuteAsync(IDefaultContext context);
+        Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken);
     }
 }

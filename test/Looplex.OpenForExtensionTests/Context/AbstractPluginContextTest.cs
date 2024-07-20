@@ -27,10 +27,10 @@ namespace Looplex.OpenForExtensionTests.Context
             context.Plugins.Returns(plugins);
 
             // Act
-            context.Plugins.Execute<ITestCommand1>(context);
+            context.Plugins.Execute<ITestCommand1>(context, CancellationToken.None);
 
             // Assert
-            existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
+            existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
         }
 
         [TestMethod]
@@ -60,14 +60,14 @@ namespace Looplex.OpenForExtensionTests.Context
             context.Plugins.Returns(plugins);
 
             // Act
-            await context.Plugins.ExecuteAsync<ITestCommand1>(context);
+            await context.Plugins.ExecuteAsync<ITestCommand1>(context, CancellationToken.None);
 
             // Assert
-            await existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock3.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context));
-            await existingCommandMock4.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock5.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock3.Received(1).ExecuteAsync(Arg.Is<IDefaultContext>(c => c == context), CancellationToken.None);
+            await existingCommandMock4.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock5.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
 
         private static IPlugin MockPluginWithCommands(IEnumerable<ICommand> commands)
@@ -104,14 +104,14 @@ namespace Looplex.OpenForExtensionTests.Context
             context.Plugins.Returns(plugins);
 
             // Act
-            await context.Plugins.ExecuteAsync<ITestCommand3>(context);
+            await context.Plugins.ExecuteAsync<ITestCommand3>(context, CancellationToken.None);
 
             // Assert
-            await existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock4.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
-            await existingCommandMock5.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>());
+            await existingCommandMock1.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock2.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock3.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock4.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
+            await existingCommandMock5.DidNotReceive().ExecuteAsync(Arg.Any<IDefaultContext>(), CancellationToken.None);
         }
     }
 }
