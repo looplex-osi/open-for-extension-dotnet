@@ -1,4 +1,5 @@
-﻿using Looplex.OpenForExtension.Traits;
+﻿using Looplex.OpenForExtension.Abstractions.Traits;
+using Looplex.OpenForExtension.Traits;
 
 namespace TheTortoiseAndTheHareAppSample.Domain.Entities
 {
@@ -16,7 +17,7 @@ namespace TheTortoiseAndTheHareAppSample.Domain.Entities
         public int Position { get; set; }
         public int Distance { get; set; }
 
-        public EventHandlingTrait EventHandling { get; } = new([StartedToRun, IsExausted, FinishedTheRace]);
+        public IEventHandlingTrait EventHandling { get; } = new EventHandlingTrait([StartedToRun, IsExausted, FinishedTheRace]);
 
         public void StartTheRace(int distance)
         {

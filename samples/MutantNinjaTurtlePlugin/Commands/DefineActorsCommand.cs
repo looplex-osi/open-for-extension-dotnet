@@ -1,15 +1,16 @@
 ﻿using System.Diagnostics;
-using Looplex.OpenForExtension.Commands;
+using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace MutantNinjaTurtlePlugin.Commands
 {
-    internal class DefineActorsCommand : IDefineActors
+    internal class DefineActorsCommand : IDefineRoles
     {
         public string Name => "Changes tortoise to ninja turtle";
 
         public string Description => "Modifies the tortoise to be invincible";
 
-        public Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken)
+        public Task ExecuteAsync(IContext context, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             
@@ -17,8 +18,8 @@ namespace MutantNinjaTurtlePlugin.Commands
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
-                dynamic tortoise = context.Actors["Tortoise"];
-                dynamic hare = context.Actors["Hare"];
+                dynamic tortoise = context.Roles["Tortoise"];
+                dynamic hare = context.Roles["Hare"];
 
                 tortoise.Speed = hare.Speed * 2;
                 tortoise.Endurance = hare.Endurance * 2;

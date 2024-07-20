@@ -1,4 +1,4 @@
-using Looplex.OpenForExtension.Commands;
+using Looplex.OpenForExtension.Abstractions.Commands;
 using MutantNinjaTurtlePlugin;
 
 namespace MutantNinjaTurtlePluginTests
@@ -15,7 +15,7 @@ namespace MutantNinjaTurtlePluginTests
             // Assert
             Assert.IsNotNull(plugin);
             Assert.AreEqual(1, plugin.Commands.Count());
-            Assert.IsTrue(typeof(IDefineActors).IsAssignableFrom(plugin.Commands.First().GetType()));
+            Assert.IsTrue(typeof(IDefineRoles).IsAssignableFrom(plugin.Commands.First().GetType()));
         }
     }
 }

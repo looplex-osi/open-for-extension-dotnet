@@ -1,16 +1,17 @@
 ﻿using System.Diagnostics;
 using BoyInTheAudiencePlugin.Entities;
-using Looplex.OpenForExtension.Commands;
+using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace BoyInTheAudiencePlugin.Commands
 {
-    internal class DefineActorsCommand : IDefineActors
+    internal class DefineActorsCommand : IDefineRoles
     {
         public string Name => "Defines a boy in the audience";
 
         public string Description => "Adds the boy to the actors dict";
 
-        public Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken)
+        public Task ExecuteAsync(IContext context, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             
@@ -18,7 +19,7 @@ namespace BoyInTheAudiencePlugin.Commands
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
-                context.Actors["BoyInTheAudience"] = new Boy();
+                context.Roles["BoyInTheAudience"] = new Boy();
             }
             
             return Task.CompletedTask;

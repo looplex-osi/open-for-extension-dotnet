@@ -1,7 +1,8 @@
-using Looplex.OpenForExtension.Commands;
 using MutantNinjaTurtlePlugin;
 using NSubstitute;
 using System.Dynamic;
+using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 using MutantNinjaTurtlePluginTests.Mocks;
 
 namespace MutantNinjaTurtlePluginTests.Commands
@@ -14,7 +15,7 @@ namespace MutantNinjaTurtlePluginTests.Commands
         {
             // Arrange
             var plugin = new Plugin();
-            var context = Substitute.For<IDefaultContext>();
+            var context = Substitute.For<IContext>();
             var actors = new Dictionary<string, dynamic>();
             dynamic hare = new ExpandoObject();
             hare.Speed = 1;
@@ -24,17 +25,17 @@ namespace MutantNinjaTurtlePluginTests.Commands
             tortoise.Endurance = 0;
             actors.Add("Tortoise", tortoise);
             actors.Add("Hare", hare);
-            context.Actors.Returns(actors);
+            context.Roles.Returns(actors);
 
             // Act
-            new RaceService().StartRaceAsync(() => plugin.TryExecute<IDefineActors>(context, CancellationToken.None));
+            new RaceService().StartRaceAsync(() => plugin.Execute<IDefineRoles>(context, CancellationToken.None));
 
             // Assert
-            var expectedSpeed = context.Actors["Hare"].Speed * 2;
-            var expectedEndurance = context.Actors["Hare"].Endurance * 2;
+            var expectedSpeed = context.Roles["Hare"].Speed * 2;
+            var expectedEndurance = context.Roles["Hare"].Endurance * 2;
             
-            Assert.AreEqual(expectedSpeed, context.Actors["Tortoise"].Speed);
-            Assert.AreEqual(expectedEndurance, context.Actors["Tortoise"].Endurance);
+            Assert.AreEqual(expectedSpeed, context.Roles["Tortoise"].Speed);
+            Assert.AreEqual(expectedEndurance, context.Roles["Tortoise"].Endurance);
         }
     }
 }

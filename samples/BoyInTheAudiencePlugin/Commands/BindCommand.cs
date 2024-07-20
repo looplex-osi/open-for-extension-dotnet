@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
-using Looplex.OpenForExtension.Commands;
+using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace BoyInTheAudiencePlugin.Commands
 {
@@ -9,7 +10,7 @@ namespace BoyInTheAudiencePlugin.Commands
 
         public string Description => "The boy will cheer for the tortoise";
 
-        public Task ExecuteAsync(IDefaultContext context, CancellationToken cancellationToken)
+        public Task ExecuteAsync(IContext context, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             
@@ -17,21 +18,21 @@ namespace BoyInTheAudiencePlugin.Commands
                 .Select(f => $"{f.GetMethod()?.DeclaringType?.Name}.{f.GetMethod()?.Name}")
                 .Any(caller => caller == "RaceService.StartRaceAsync"))
             {
-                context.Actors["Hare"].On("IsExausted", (EventHandler)HareIsExausted);
+                context.Roles["Hare"].On("IsExausted", (EventHandler)HareIsExausted);
 
                 void TortoiseFinishedTheRace(object? sender, EventArgs e)
                 {
                     if (!((IDictionary<string, object>)context.State).ContainsKey("HareFinishTime"))
                     {
-                        context.Actors["BoyInTheAudience"].Celebrate();
+                        context.Roles["BoyInTheAudience"].Celebrate();
                     }
                     else
                     {
-                        context.Actors["BoyInTheAudience"].Cry();
+                        context.Roles["BoyInTheAudience"].Cry();
                     }
                 }
 
-                context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
+                context.Roles["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
             }
             return Task.CompletedTask;
             
@@ -39,7 +40,7 @@ namespace BoyInTheAudiencePlugin.Commands
             {
                 if (!((IDictionary<string, object>)context.State).ContainsKey("TortoiseFinishTime"))
                 {
-                    context.Actors["BoyInTheAudience"].Cheer();
+                    context.Roles["BoyInTheAudience"].Cheer();
                 }
             }
         }

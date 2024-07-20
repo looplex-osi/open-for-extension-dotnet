@@ -1,4 +1,7 @@
-﻿using Looplex.OpenForExtension.Commands;
+﻿using Looplex.OpenForExtension.Abstractions.Commands;
+using Looplex.OpenForExtension.Abstractions.Contexts;
+using Looplex.OpenForExtension.Abstractions.ExtensionMethods;
+using Microsoft.Extensions.DependencyInjection;
 using TheTortoiseAndTheHareAppSample.Domain.Entities;
 using TheTortoiseAndTheHareAppSample.Domain.Repositories;
 
@@ -6,7 +9,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
 {
     internal class RaceService
     {        
-        public void StartRace(IDefaultContext context, CancellationToken cancellationToken)
+        public void StartRace(IContext context, CancellationToken cancellationToken)
         {
             IList<dynamic> results = [];
 
@@ -29,9 +32,9 @@ namespace TheTortoiseAndTheHareAppSample.Services
             context.Plugins.Execute<IValidateInput>(context, cancellationToken);
 
             // Define actors
-            context.Actors.Add("Tortoise", tortoise);
-            context.Actors.Add("Hare", hare);
-            context.Plugins.Execute<IDefineActors>(context, cancellationToken);
+            context.Roles.Add("Tortoise", tortoise);
+            context.Roles.Add("Hare", hare);
+            context.Plugins.Execute<IDefineRoles>(context, cancellationToken);
 
             // Bind events
             BindEvents(context, results);
@@ -69,12 +72,12 @@ namespace TheTortoiseAndTheHareAppSample.Services
             }
         }
 
-        private static void BindEvents(IDefaultContext context, IList<dynamic> results)
+        private static void BindEvents(IContext context, IList<dynamic> results)
         {
-            context.Actors["Tortoise"].On("StartedToRun", (EventHandler)TortoiseStartedToRun);
-            context.Actors["Hare"].On("StartedToRun", (EventHandler)HareStartedToRun);
-            context.Actors["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
-            context.Actors["Hare"].On("FinishedTheRace", (EventHandler)HareFinishedTheRace);
+            context.Roles["Tortoise"].On("StartedToRun", (EventHandler)TortoiseStartedToRun);
+            context.Roles["Hare"].On("StartedToRun", (EventHandler)HareStartedToRun);
+            context.Roles["Tortoise"].On("FinishedTheRace", (EventHandler)TortoiseFinishedTheRace);
+            context.Roles["Hare"].On("FinishedTheRace", (EventHandler)HareFinishedTheRace);
             return;
             
             void TortoiseStartedToRun(object? sender, EventArgs e)
@@ -90,7 +93,7 @@ namespace TheTortoiseAndTheHareAppSample.Services
                 context.State.TortoiseFinishTime = DateTime.UtcNow;
                 results.Add(new
                 {
-                    context.Actors["Tortoise"].Name, ElapsedTime = (context.State.TortoiseFinishTime - context.State.TortoiseStartTime).TotalSeconds
+                    context.Roles["Tortoise"].Name, ElapsedTime = (context.State.TortoiseFinishTime - context.State.TortoiseStartTime).TotalSeconds
                 });
             }
             void HareFinishedTheRace(object? sender, EventArgs e)
@@ -98,27 +101,27 @@ namespace TheTortoiseAndTheHareAppSample.Services
                 context.State.HareFinishTime = DateTime.UtcNow;
                 results.Add(new
                 {
-                    context.Actors["Hare"].Name, ElapsedTime = (context.State.HareFinishTime - context.State.HareStartTime).TotalSeconds
+                    context.Roles["Hare"].Name, ElapsedTime = (context.State.HareFinishTime - context.State.HareStartTime).TotalSeconds
                 });
             }
         }
 
-        private void DefaultAction(IDefaultContext context, int distance, IList<dynamic> results)
+        private void DefaultAction(IContext context, int distance, IList<dynamic> results)
         {
-            context.Actors["Tortoise"].StartTheRace(distance);
-            context.Actors["Hare"].StartTheRace(distance);
+            context.Roles["Tortoise"].StartTheRace(distance);
+            context.Roles["Hare"].StartTheRace(distance);
 
-            while (context.Actors["Tortoise"].State != "Stopped"
-                || context.Actors["Hare"].State != "Stopped")
+            while (context.Roles["Tortoise"].State != "Stopped"
+                || context.Roles["Hare"].State != "Stopped")
             {
-                context.Actors["Tortoise"].Sprint();
-                context.Actors["Hare"].Sprint();
+                context.Roles["Tortoise"].Sprint();
+                context.Roles["Hare"].Sprint();
             }
 
             context.Result = results;
         }
         
-        public async Task StartRaceAsync(IDefaultContext context, CancellationToken cancellationToken)
+        public async Task StartRaceAsync(IContext context, CancellationToken cancellationToken)
         {
             IList<dynamic> results = [];
 
@@ -141,9 +144,9 @@ namespace TheTortoiseAndTheHareAppSample.Services
             await context.Plugins.ExecuteAsync<IValidateInput>(context, cancellationToken);
 
             // Define actors
-            context.Actors.Add("Tortoise", tortoise);
-            context.Actors.Add("Hare", hare);
-            await context.Plugins.ExecuteAsync<IDefineActors>(context, cancellationToken);
+            context.Roles.Add("Tortoise", tortoise);
+            context.Roles.Add("Hare", hare);
+            await context.Plugins.ExecuteAsync<IDefineRoles>(context, cancellationToken);
 
             // Bind events
             BindEvents(context, results);

@@ -1,5 +1,5 @@
-using Looplex.OpenForExtension.Commands;
 using BoyInTheAudiencePlugin;
+using Looplex.OpenForExtension.Abstractions.Commands;
 
 namespace BoyInTheAudiencePluginTests
 {
@@ -15,7 +15,7 @@ namespace BoyInTheAudiencePluginTests
             // Assert
             Assert.IsNotNull(plugin);
             Assert.AreEqual(2, plugin.Commands.Count());
-            Assert.IsTrue(typeof(IDefineActors).IsAssignableFrom(plugin.Commands.First().GetType()));
+            Assert.IsTrue(typeof(IDefineRoles).IsAssignableFrom(plugin.Commands.First().GetType()));
             Assert.IsTrue(typeof(IBind).IsAssignableFrom(plugin.Commands.Last().GetType()));
         }
     }
