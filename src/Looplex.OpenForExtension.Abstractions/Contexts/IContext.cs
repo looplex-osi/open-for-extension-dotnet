@@ -11,6 +11,6 @@ namespace Looplex.OpenForExtension.Abstractions.Contexts
         dynamic State { get; }
         IDictionary<string, dynamic> Roles { get; }
         IServiceProvider Services { get; }
-        object? Result { get; set; }
+        object Result { get; set; }
     }
 }

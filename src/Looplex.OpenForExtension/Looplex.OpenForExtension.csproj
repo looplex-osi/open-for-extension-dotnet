@@ -1,38 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<!-- See: https://learn.microsoft.com/en-us/dotnet/standard/frameworks -->
-    <TargetFramework>netstandard2.1</TargetFramework>
-	<IsPackable>true</IsPackable>
-	<PackageId>Looplex.OpenForExtension</PackageId>
+    <!-- See: https://learn.microsoft.com/en-us/dotnet/standard/frameworks -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>Looplex.OpenForExtension</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseUrl>https://github.com/looplex-osi/open-for-extension-dotnet/blob/master/LICENSE.md</PackageLicenseUrl>  
-	<PackageProjectUrl>https://github.com/looplex-osi/open-for-extension-dotnet</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>  
-      <Authors>Guilherme Câmara</Authors>
-	<Company>Looplex</Company>
-	<PackageTags>Looplex;OpenForExtension;Plugin;Default;</PackageTags>
-	<Description>
-        Looplex.OpenForExtension provides default implementations for the interfaces defined in Looplex.OpenForExtension.Abstractions, including IContext, IPlugin, and IEventHandlingTrait. These implementations offer a solid foundation for extending and customizing your project's kernel architecture.
-	</Description>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <PackageLicenseUrl>https://github.com/looplex-osi/open-for-extension-dotnet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/looplex-osi/open-for-extension-dotnet</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Guilherme Câmara</Authors>
+    <Company>Looplex</Company>
+    <PackageTags>Looplex;OpenForExtension;Plugin;Default;</PackageTags>
+    <Description>
+      Looplex.OpenForExtension provides default implementations for the interfaces defined in Looplex.OpenForExtension.Abstractions, including IContext, IPlugin, and IEventHandlingTrait. These implementations offer a solid foundation for extending and customizing your project's kernel architecture.
+    </Description>
   </PropertyGroup>
 
-    <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="\"/>
-    </ItemGroup>
-    
   <ItemGroup>
-    <ProjectReference Include="..\Looplex.OpenForExtension.Abstractions\Looplex.OpenForExtension.Abstractions.csproj" />
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
-	
-  <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'">
- 	<Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />
-  </Target>
-  <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Unix'">
-	<Exec Command="dotnet nuget push &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; --source ~/.aspnet/local-nuget-feed" />
-  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Looplex.OpenForExtension.Abstractions\Looplex.OpenForExtension.Abstractions.csproj"/>
+  </ItemGroup>
 
 </Project>
