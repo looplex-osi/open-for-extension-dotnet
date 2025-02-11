@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.1.5"></a>
+## [1.1.5](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.1.5) (2025-02-11)
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://www.github.com/looplex-osi/open-for-extension-dotnet/releases/tag/v1.1.4) (2025-02-11)
 
