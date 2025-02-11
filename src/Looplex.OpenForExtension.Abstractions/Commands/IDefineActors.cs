@@ -1,4 +1,4 @@
 ﻿namespace Looplex.OpenForExtension.Abstractions.Commands
 {
-    public interface IDefineRoles : ICommand { }
+    public interface IDefineActors : ICommand { }
 }
