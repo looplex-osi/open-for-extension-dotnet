@@ -6,8 +6,6 @@ namespace Looplex.OpenForExtension.Abstractions.Commands
 {
     public interface ICommand
     {
-        string Name { get; }
-        string Description { get; }
         Task ExecuteAsync(IContext context, CancellationToken cancellationToken);
     }
 }
