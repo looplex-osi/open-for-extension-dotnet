@@ -9,13 +9,13 @@ namespace Looplex.OpenForExtension.Loader
 {
     public sealed class PluginLoader
     {
-        public IEnumerable<IPlugin> LoadPlugins(IEnumerable<string> pluginsPaths, IList<string> subscriptions)
+        public IEnumerable<IPlugin> LoadPlugins(IEnumerable<string> pluginsPaths)
         {
             var plugins = new List<IPlugin>();
             foreach (var pluginPath in pluginsPaths)
             {
                 var assembly = LoadAssembly(pluginPath);
-                plugins.AddRange(CreatePlugins(assembly, subscriptions));
+                plugins.AddRange(CreatePlugins(assembly));
             }
             return plugins;
         }
@@ -28,14 +28,13 @@ namespace Looplex.OpenForExtension.Loader
                 new AssemblyName(Path.GetFileNameWithoutExtension(pluginPath)));
         }
 
-        private static IEnumerable<IPlugin> CreatePlugins(Assembly assembly, IList<string> subscriptions)
+        private static IEnumerable<IPlugin> CreatePlugins(Assembly assembly)
         {
             foreach (Type type in assembly.GetTypes())
             {
                 if (typeof(IPlugin).IsAssignableFrom(type))
                 {
-                    if (Activator.CreateInstance(type) is IPlugin plugin
-                        && plugin.GetSubscriptions().Any(subscriptions.Contains))
+                    if (Activator.CreateInstance(type) is IPlugin plugin)
                     {
                         yield return plugin;
                     }

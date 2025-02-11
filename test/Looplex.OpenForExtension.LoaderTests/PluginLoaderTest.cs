@@ -12,7 +12,7 @@ namespace Looplex.OpenForExtension.LoaderTests
             var loader = new PluginLoader();
 
             // Act
-            var plugins = loader.LoadPlugins(Array.Empty<string>(), new List<string>());
+            var plugins = loader.LoadPlugins(Array.Empty<string>());
 
             // Assert
             Assert.IsNotNull(plugins);
@@ -26,7 +26,7 @@ namespace Looplex.OpenForExtension.LoaderTests
             var loader = new PluginLoader();
 
             // Act
-            var plugins = loader.LoadPlugins(GetPluginsPaths(), ["RaceService.StartRaceAsync"]);
+            var plugins = loader.LoadPlugins(GetPluginsPaths());
 
             // Assert
             Assert.IsNotNull(loader);
