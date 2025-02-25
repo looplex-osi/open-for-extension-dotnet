@@ -29,12 +29,14 @@ namespace TheTortoiseAndTheHareAppSample
             var tortoise = new Tortoise { Name = "Tortoise", Speed = 10, Endurance = 10000 };
             tortoiseRepository.Add(tortoise);
 
-            var context = DefaultContext.Create(LoadPlugins(args), serviceProvider);
+            var context = DefaultContext.New(LoadPlugins(args));
             context.State.HareId = hare.Id;
             context.State.TortoiseId = tortoise.Id;
             context.State.Distance = 1000;
-
-            var contextChild = DefaultContext.Create(LoadPlugins(args), serviceProvider);
+            context.Roles.Add("HareRepository", hareRepository);
+            context.Roles.Add("TortoiseRepository", tortoiseRepository);
+            
+            var contextChild = DefaultContext.New(LoadPlugins(args));
             contextChild.State.Parent = context;
                 
             var service = new RaceService();
@@ -54,7 +56,7 @@ namespace TheTortoiseAndTheHareAppSample
 
         private static IList<IPlugin> LoadPlugins(string[] args)
         {
-            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args), ["RaceService.StartRaceAsync"]).ToList();
+            return (new PluginLoader()).LoadPlugins(GetPluginsPaths(args)).ToList();
         }
 
         private static IEnumerable<string> GetPluginsPaths(string[] args)

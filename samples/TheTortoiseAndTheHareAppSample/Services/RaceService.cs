@@ -20,8 +20,8 @@ namespace TheTortoiseAndTheHareAppSample.Services
             int distance = context.State.Distance;
             context.Plugins.Execute<IHandleInput>(context, cancellationToken);
             
-            var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
-            var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
+            var hareRepository = (IRepository<Hare>)context.Roles["HareRepository"];
+            var tortoiseRepository = (IRepository<Tortoise>)context.Roles["TortoiseRepository"];
             var tortoise = tortoiseRepository.GetById(tortoiseId);
             var hare = hareRepository.GetById(hareId);            
 
@@ -132,8 +132,8 @@ namespace TheTortoiseAndTheHareAppSample.Services
             int distance = context.State.Distance;
             await context.Plugins.ExecuteAsync<IHandleInput>(context, cancellationToken);
             
-            var hareRepository = context.Services.GetRequiredService<IRepository<Hare>>();
-            var tortoiseRepository = context.Services.GetRequiredService<IRepository<Tortoise>>();
+            var hareRepository = (IRepository<Hare>)context.Roles["HareRepository"];
+            var tortoiseRepository = (IRepository<Tortoise>)context.Roles["TortoiseRepository"];
             var tortoise = tortoiseRepository.GetById(tortoiseId);
             var hare = hareRepository.GetById(hareId);            
 
