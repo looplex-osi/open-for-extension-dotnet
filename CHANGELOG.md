@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.1.8"></a>
+## 1.1.8 (2025-02-25)
+
+### Bug Fixes
+
+* open for extension is compatible with .net standard 2.0
+
 <a name="1.1.7"></a>
 ## 1.1.7 (2025-02-25)
 
