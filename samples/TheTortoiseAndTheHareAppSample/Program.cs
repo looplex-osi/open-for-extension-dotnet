@@ -34,6 +34,9 @@ namespace TheTortoiseAndTheHareAppSample
             context.State.TortoiseId = tortoise.Id;
             context.State.Distance = 1000;
 
+            var contextChild = DefaultContext.Create(LoadPlugins(args), serviceProvider);
+            contextChild.State.Parent = context;
+                
             var service = new RaceService();
 
             if (args.Length > 0)
