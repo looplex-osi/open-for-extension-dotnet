@@ -13,7 +13,7 @@
 
 # About
 
-`@looplex/common` plays an important role in our platform engineering mission. It's useful at both browser and server environments. Rest assured knowing that it is embedded on the runtime you are using.
+`@looplex/open-for-extension-dotnet` is a C# port of nagaozen [epf](https://github.com/nagaozen/epf), a micro-kernel architecture to allow applications to leave extension points in their code so the behavior of the actions can be extended or modified by external plugins.
 
 # Features
 
