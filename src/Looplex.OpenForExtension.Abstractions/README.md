@@ -79,6 +79,6 @@ See [`LICENSE.md`](/LICENSE.md) for more information.
 
 If you have any questions or feedback, feel free to reach out:
 
-	•	Email: guilherme.camara@outlook.com.br
-	•	Email: guilherme.camara@looplex.com.br
-	•	Email: dev@looplex.com.br
+	•	Email: fabio.nagao@looplex.com.br
+	•	Email: developer@looplex.com.br
+	•	Email: guilherme.camara@outlook.com.br (_alumni_)
